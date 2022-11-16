@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex h-auto w-100 justify-content-center align-items-center flex-grow flex-column">
+	<h1 class="mb-3">Login</h1>
+	<div class="container-flex border p-3">
+		<form  method="POST" action="/login">
+			<div class="mb-3">
+				<label for="username" class="form-label">Username</label>
+				<input type="text" class="form-control" id="username"  name="username" placeholder="Your Name"  required>
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" class="form-control" name="password" placeholder="Password"  required>
+			</div>
+			<button type="submit" class="btn btn-primary">Login</button>
+			<a href="{{ url_for('register')}}" class="btn btn-outline-secondary">Sign Up</a>
+		</form>
+	</div>
+</div>
+{% endblock %}

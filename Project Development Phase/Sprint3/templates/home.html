@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex h-auto w-100 justify-content-center align-items-center flex-grow flex-column">
+	<h1 class="mb-5">Vehicle Performance Analyzer</h1>
+	<div class="container w-md-75">
+		<form class="row g-3 border" action="" method="post">
+			<div class="col-md-6">
+				<label for="Kilometers_Driven" class="form-label">Kilometers Driven</label>
+				<input class="form-control" type="number" name="Kilometers_Driven" placeholder="Eg: 15000" min="0" required>
+			</div>
+			<div class="col-md-6">
+				<label for="Fuel_Type" class="form-label">Fuel Type</label>
+				<select class="form-select" name="Fuel_Type" placeholder="Fuel Type" min="0" required>
+					<option value="-1" selected>SELECT</option>
+					<option value="0">CNG</option>
+					<option value="1">Disel</option>
+					<option value="2">Petrol</option>
+					<option value="3">LPG</option>
+					<option value="4">Electric</option>
+				</select>
+			</div>
+			<div class="col-md-6">
+				<label for="Fuel_Type" class="form-label">Transmission Type</label>
+				<select class="form-select" name="Transmission" placeholder="Transmission" min="0" required>
+					<option value="-1" selected>SELECT</option>
+					<option value="0">Manual</option>
+					<option value="1">Automatic</option>
+				</select>
+			</div>
+			<div class="col-md-6">
+				<label for="Engine_CC" class="form-label">Engine Capacity</label>
+				<input class="form-control" type="number" name="Engine_CC" placeholder="Eg: 1000" min="0" required>
+			</div>
+			<div class="col-md-4">
+				<label for="Power" class="form-label">Engine Power</label>
+				<input class="form-control" type="number" name="Power" placeholder="Eg: 80" min="0" required>
+			</div>
+			<div class="col-md-4">
+				<label for="Seats" class="form-label">Number of Seats</label>
+				<input class="form-control" type="number" name="Seats" placeholder="Eg: 5" min="0" required>
+			</div>
+			<div class="col-md-4">
+					<label class="form-label" for="Price">Car Price</label>
+					<input class="form-control" type="number" name="Price" placeholder="Eg: 500000" min="0" required>
+			</div>
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary w-100 text-center">Get Mileage</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+	<!-- <button class="login100-form-btn">
+			<a class="login100-form-btn" href="/logout">Logout</a>
+		</button> -->
+	{% endblock %}
