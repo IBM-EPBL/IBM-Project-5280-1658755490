@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="d-flex h-auto w-100 justify-content-center align-items-center flex-grow">
+		<div class="container text-center">
+				<div class="container text-center">
+				<h1 class="title-1 mb-3">Predicted Mileage</h1>
+				<h4>{{z}} Km/L</h4>
+				</div>
+				<br>
+				<br>
+				<!-- <div style = "overflow:scroll"> -->
+				<div>
+				<h1 class="title-1 mb-3">Cars suggested based on users' input demands</h1>
+				<ul style= "position: relative; overflow: scroll; top: 20px;bottom: 20px; left: 20px; right: 20px; border: 2px solid #ccc; font-size: 16px; font-family: Arial, sans-serif;  -webkit-overflow-scrolling: touch">
+				{% for car in car_list %}
+				<option style= "padding: 10px 20px; border-bottom: 1px solid #ccc" value= "{{car}}">{{car}}</option>
+				{% endfor %}
+				</ul>	
+				</div>
+				<!-- </div> -->
+			<!-- </div> -->
+		</div>
+	</div>
+	</div>
+{% endblock %}
