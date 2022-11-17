@@ -3,7 +3,7 @@
 <div class="d-flex h-auto w-100 justify-content-center align-items-center flex-grow flex-column">
 	<h1 class="mb-5">Vehicle Performance Analyzer</h1>
 	<div class="container w-md-75">
-		<form class="row g-3 border" action="" method="post">
+		<form class="row g-3 border" action="/results" method="POST">
 			<div class="col-md-6">
 				<label for="Kilometers_Driven" class="form-label">Kilometers Driven</label>
 				<input class="form-control" type="number" name="Kilometers_Driven" placeholder="Eg: 15000" min="0" required>
@@ -13,7 +13,7 @@
 				<select class="form-select" name="Fuel_Type" placeholder="Fuel Type" min="0" required>
 					<option value="-1" selected>SELECT</option>
 					<option value="0">CNG</option>
-					<option value="1">Disel</option>
+					<option value="1">Diesel</option>
 					<option value="2">Petrol</option>
 					<option value="3">LPG</option>
 					<option value="4">Electric</option>
