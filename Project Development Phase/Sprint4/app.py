@@ -5,13 +5,14 @@ import requests
 
 from flask import Flask, url_for, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import dotenv_values
 
+config = dotenv_values(".env")
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 
-# API_KEY = "fbxfE8KinT0zcp5iFQn0Khh_xndwV2MEDSInZSPwuQ1m" kabilan
-API_KEY = "1CWmx-eanPcHHKrZEeZwyKIUXEWs5vGrOy4K30J72rfT"
+API_KEY = config['API_KEY']
 
 token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data={"apikey":
                                                                                  API_KEY, "grant_type": 'urn:ibm:params:oauth:grant-type:apikey'})
@@ -87,6 +88,7 @@ def results():
                 if abs(num1-num2) <= 1:
                     suggested_cars.append(row[1])
                     # print(row[1])
+        suggested_cars = set(suggested_cars)
 
         return render_template('results.html', z=str(final_prediction), car_list = suggested_cars)
     #     try:
@@ -123,4 +125,4 @@ if(__name__ == '__main__'):
     app.secret_key = "ThisIsNotASecret:p"
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=config['DEBUG'])
