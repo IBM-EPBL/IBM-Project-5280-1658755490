@@ -70,7 +70,7 @@ def results():
         # engine_cc), int(power), int(seats), int(carprice), ]]
         payload_scoring = {"input_data": [{"field": [
             ["Kilometers_Driven", "Fuel_Type", "Transmission", "Engine CC", "Power", "Seats", "Price"]], "values": t1}]}
-        response_scoring = requests.post('https://eu-de.ml.cloud.ibm.com/ml/v4/deployments/acb7733e-5447-4b2d-b358-312456c41d1f/predictions?version=2022-11-17', json=payload_scoring,
+        response_scoring = requests.post('https://eu-de.ml.cloud.ibm.com/ml/v4/deployments/e77a4f6c-2c2d-4b57-ae20-c7c99f1d7fb1/predictions?version=2022-11-19', json=payload_scoring,
                                          headers={'Authorization': 'Bearer ' + mltoken})
         print("Scoring response")
         prediction = response_scoring.json()["predictions"][0]["values"][0][0]

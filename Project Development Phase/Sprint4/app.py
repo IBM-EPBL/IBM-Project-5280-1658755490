@@ -73,7 +73,8 @@ def results():
         response_scoring = requests.post('https://eu-de.ml.cloud.ibm.com/ml/v4/deployments/acb7733e-5447-4b2d-b358-312456c41d1f/predictions?version=2022-11-17', json=payload_scoring,
                                          headers={'Authorization': 'Bearer ' + mltoken})
         print("Scoring response")
-        prediction = response_scoring.json()["predictions"][0]["values"][0][0]
+        prediction = response_scoring.json()
+        # ["predictions"][0]["values"][0][0]
         print(prediction)
         final_prediction = round(prediction, 2)
 
