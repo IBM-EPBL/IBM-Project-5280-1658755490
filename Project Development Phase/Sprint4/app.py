@@ -2,6 +2,7 @@ import numpy as np
 import csv
 import sys
 import requests
+import pickle
 
 from flask import Flask, url_for, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
@@ -72,11 +73,35 @@ def results():
             ["Kilometers_Driven", "Fuel_Type", "Transmission", "Engine CC", "Power", "Seats", "Price"]], "values": t1}]}
         response_scoring = requests.post('https://eu-de.ml.cloud.ibm.com/ml/v4/deployments/acb7733e-5447-4b2d-b358-312456c41d1f/predictions?version=2022-11-17', json=payload_scoring,
                                          headers={'Authorization': 'Bearer ' + mltoken})
+        print(type(response_scoring))
         print("Scoring response")
         prediction = response_scoring.json()
         # ["predictions"][0]["values"][0][0]
         print(prediction)
-        final_prediction = round(prediction, 2)
+        new_prediction = None
+        if 'errors' in prediction:
+            loaded_model = pickle.load(open('regression2.pkl', 'rb'))
+            if(t1[0][1] == 'CNG'):
+                t1[0][1] = 0
+            elif(t1[0][1] == 'Diesel'):
+                t1[0][1] = 1
+            elif(t1[0][1] == 'Petrol'):
+                t1[0][1] = 2
+            elif(t1[0][1] == 'LPG'):
+                t1[0][1] = 3
+            elif(t1[0][1] == 'Electric'):
+                t1[0][1] = 4
+
+            if(t1[0][2] == 'Manual'):
+                t1[0][2] = 0
+            elif(t1[0][2] == 'Automatic'):
+                t1[0][2] = 1
+            t2 = [[25000, 0, 0, 1200, 130, 4, 6]]
+            new_prediction = loaded_model.predict(t2)
+            # new_prediction = new_prediction[0]
+        else:
+            new_prediction = prediction["predictions"][0]["values"][0][0]
+        final_prediction = round(new_prediction, 2)
 
         suggested_cars = []
         csv_file = csv.reader(open('CARS_2.csv', "r"), delimiter=",")

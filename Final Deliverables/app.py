@@ -72,8 +72,10 @@ def results():
             ["Kilometers_Driven", "Fuel_Type", "Transmission", "Engine CC", "Power", "Seats", "Price"]], "values": t1}]}
         response_scoring = requests.post('https://eu-de.ml.cloud.ibm.com/ml/v4/deployments/e77a4f6c-2c2d-4b57-ae20-c7c99f1d7fb1/predictions?version=2022-11-19', json=payload_scoring,
                                          headers={'Authorization': 'Bearer ' + mltoken})
+        
         print("Scoring response")
-        prediction = response_scoring.json()["predictions"][0]["values"][0][0]
+        prediction = response_scoring.json()
+        # ["predictions"][0]["values"][0][0]
         print(prediction)
         final_prediction = round(prediction, 2)
 
